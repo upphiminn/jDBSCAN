@@ -8,7 +8,7 @@
 			clusters 	= [],
 			status 		= [],
 			graph 		= [],
-			distance 		= euclidean_distance,
+			distance 	= euclidean_distance,
 			time_distance 	= timestamp_distance;
 
 		//Utils
@@ -108,7 +108,7 @@
 		
 		function expand_cluster(point_idx, neighbours, cluster_idx){
 			clusters[cluster_idx - 1].push(point_idx); //add point to cluster
-            status[point_idx] = cluster_idx;	//assign cluster id 
+			status[point_idx] = cluster_idx;	//assign cluster id 
 
 			for(var i = 0 ; i < neighbours.length; i++){
 				var curr_point_idx = neighbours[i];
@@ -129,8 +129,8 @@
 		}
 
 		var dbscan = function(){
-			status 		 = [];
-			clusters     = [];
+			status 		= [];
+			clusters    = [];
 
 			for (var i = 0; i < data.length ; i++){
 				if (status[i] === undefined){
@@ -234,16 +234,16 @@
 				if(typeof fct == 'string'){
 					switch(fct){
 						case 'HAVERSINE':
-											distance = haversine_distance;
-											break;
+								distance = haversine_distance;
+								break;
 						case 'EUCLIDEN':
-											distance = euclidean_distance;
-											break;
+								distance = euclidean_distance;
+								break;
 						case 'MANHATTAN':
-											distance = manhattan_distance;
-											break;
-						default 		:   
-											distance = euclidean_distance;
+								distance = manhattan_distance;
+								break;
+						default:   
+								distance = euclidean_distance;
 					}
 				}
 				else 
