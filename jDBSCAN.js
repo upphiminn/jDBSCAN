@@ -50,6 +50,7 @@
 		  }
 		  return a;
 		}
+
 		//Distance Functions
 		function timestamp_distance(point1, point2){
 			return Math.abs(point2.timestamp - point1.timestamp);
@@ -85,7 +86,7 @@
 				  return d.toPrecision(precision);
 		}
 
-
+		//Core Algorithm Related
 		function get_region_neighbours(point_idx){
 			var neighbours = [];
 			var d = data[point_idx];
@@ -104,7 +105,7 @@
 			}
 			return neighbours;
 		}
-		//Core Algorithm
+		
 		function expand_cluster(point_idx, neighbours, cluster_idx){
 			clusters[cluster_idx - 1].push(point_idx); //add point to cluster
             status[point_idx] = cluster_idx;	//assign cluster id 
@@ -149,7 +150,7 @@
 			return status;
 		} 
 
-		//Resulting clusters center points
+		//Resulting Clusters Center Points
 		dbscan.getClusters = function(){
 			var num_clusters = clusters.length;
 			var clusters_centers = [];
