@@ -80,7 +80,7 @@ To run the algorithm you need to provide the data along with the **eps** and **m
 		var dbscanner = dbscan().eps(0.075).minPts(1).distance('EUCLIDEAN').data(point_data);
 The distance functions available are: **'EUCLIDEAN', 'HAVERSINE'** (for GPS data), **'MANHATTAN'**.
 
- 	Additionally you can provide your own distance function, which must accept at least two parameters (the two points). The next step is to simply run the clustering algorithm.
+ 	Additionally you can provide your own distance function, which must accept at least two parameters (the two points) by pasint it to the *distance* methods. The next step is to simply run the clustering algorithm.
 		
 		// This will return the assignment of each point to a cluster number, 
 		// points which have  -1 as assigned cluster number are noise.
@@ -88,7 +88,7 @@ The distance functions available are: **'EUCLIDEAN', 'HAVERSINE'** (for GPS data
 		
 		// (OPTIONAL) If you need the cluster centers for each of the
 		// identified clusters use this 
-		var cluster_centers = dbscanner.getClusters();In case of s**patio-temporal data**, as described above, **additional parameters must be supplied**. Such as **time_eps** (difference in seconds used as the time equivalent of the distance eps value).
+		var cluster_centers = dbscanner.getClusters();In case of **spatio-temporal data**, as described above, **additional parameters must be supplied**. Such as **time_eps** (difference in seconds used as the time equivalent of the distance eps value).
 
 		var dbscanner = dbscan().eps(0.075).minPts(1).time_eps(1800).data(data);The default **time distance function** is given by the absolute difference between timestamps. Other functions can be used by passing a function to the time_distance method, it also should accept two objects with a timestamp field.
 		var dbscanner = dbscan().eps(0.075).minPts(1).time_eps(1800).time_distance(custom_function).data(data);The remaining steps are similar.
