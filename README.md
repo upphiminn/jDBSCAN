@@ -78,8 +78,9 @@ To run the algorithm you need to provide the data along with the **eps** and **m
 
 		// Configure a DBSCAN instance.
 		var dbscanner = dbscan().eps(0.075).minPts(1).distance('EUCLIDEAN').data(point_data);
-The distance functions available are: **'EUCLIDEAN', 'HAVERSINE', 'MANHATTAN'**.
-Additionally you can provide your own distance function, which must accept at least two parameters (the two points). The next step is to simply run the clustering algorithm.
+The distance functions available are: **'EUCLIDEAN', 'HAVERSINE'** (for GPS data), **'MANHATTAN'**.
+
+ 	Additionally you can provide your own distance function, which must accept at least two parameters (the two points). The next step is to simply run the clustering algorithm.
 		
 		// This will return the assignment of each point to a cluster number, 
 		// points which have  -1 as assigned cluster number are noise.
