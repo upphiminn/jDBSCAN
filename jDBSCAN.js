@@ -1,3 +1,7 @@
+/* 
+Author: Corneliu S.
+2013
+*/
 (function(){
 	jDBSCAN = function(){
 		//Local instance vars.
