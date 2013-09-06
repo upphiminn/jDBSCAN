@@ -77,7 +77,7 @@ Where **timestamp** is given by the **UNIX timestamp in seconds** for the sample
 To run the algorithm you need to provide the data along with the **eps** and **minPts** parameters. For the traditional **DBSCAN** the steps are the following: 
 
 		// Configure a DBSCAN instance.
-		var dbscanner = dbscan().eps(0.075).minPts(1).distance('EUCLIDEAN').data(point_data);
+		var dbscanner = jDBSCAN().eps(0.075).minPts(1).distance('EUCLIDEAN').data(point_data);
 The distance functions available are: **'EUCLIDEAN', 'HAVERSINE'** (for GPS data), **'MANHATTAN'**.
 
  	Additionally you can provide your own distance function, which must accept at least two parameters (the two points), and passing it to the *distance* method. The next step is to simply run the clustering algorithm.
@@ -90,5 +90,5 @@ The distance functions available are: **'EUCLIDEAN', 'HAVERSINE'** (for GPS data
 		// identified clusters use this 
 		var cluster_centers = dbscanner.getClusters();In case of **spatio-temporal data**, as described above, **additional parameters must be supplied**. Such as **time_eps** (difference in seconds used as the time equivalent of the distance eps value).
 
-		var dbscanner = dbscan().eps(0.075).minPts(1).time_eps(1800).data(data);The default **time distance function** is given by the absolute difference between timestamps. Other functions can be used by passing a function to the *time_distance* method, it also should accept two objects with a *timestamp* field.
-		var dbscanner = dbscan().eps(0.075).minPts(1).time_eps(1800).time_distance(custom_function).data(data);The remaining steps are similar.
+		var dbscanner = jDBSCAN().eps(0.075).minPts(1).time_eps(1800).data(data);The default **time distance function** is given by the absolute difference between timestamps. Other functions can be used by passing a function to the *time_distance* method, it also should accept two objects with a *timestamp* field.
+		var dbscanner = jDBSCAN().eps(0.075).minPts(1).time_eps(1800).time_distance(custom_function).data(data);The remaining steps are similar.
