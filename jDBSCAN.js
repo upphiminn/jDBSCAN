@@ -1,5 +1,5 @@
 /* 
-Author: Corneliu S.
+Author: Corneliu S. (github.com/upphiminn)
 2013
 */
 (function(){
