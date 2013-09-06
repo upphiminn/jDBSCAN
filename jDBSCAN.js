@@ -166,7 +166,7 @@
 
 					clusters_centers[i].x  /= clusters[i].length;
 					clusters_centers[i].y  /= clusters[i].length;
-
+					clusters_centers[i].dimension = clusters[i].length;
 					clusters_centers[i].parts	= clusters[i];
 				}
 
