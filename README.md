@@ -91,4 +91,6 @@ The distance functions available are: **'EUCLIDEAN', 'HAVERSINE'** (for GPS data
 		var cluster_centers = dbscanner.getClusters();In case of **spatio-temporal data**, as described above, **additional parameters must be supplied**. Such as **time_eps** (difference in seconds used as the time equivalent of the distance eps value).
 
 		var dbscanner = jDBSCAN().eps(0.075).minPts(1).time_eps(1800).data(data);The default **time distance function** is given by the absolute difference between timestamps. Other functions can be used by passing a function to the *time_distance* method, it also should accept two objects with a *timestamp* field.
-		var dbscanner = jDBSCAN().eps(0.075).minPts(1).time_eps(1800).time_distance(custom_function).data(data);The remaining steps are similar.
+		var dbscanner = jDBSCAN().eps(0.075).minPts(1).time_eps(1800).time_distance(custom_function).data(data);The remaining steps are similar.##Example
+See **example.html**, use the console to view the raw input data and raw output.![](example/default.png)
+####After DBSCAN![](example/clusters.png)
