@@ -240,7 +240,7 @@ Author: Corneliu S. (github.com/upphiminn)
 						case 'HAVERSINE':
 								distance = haversine_distance;
 								break;
-						case 'EUCLIDEN':
+						case 'EUCLIDEAN':
 								distance = euclidean_distance;
 								break;
 						case 'MANHATTAN':
