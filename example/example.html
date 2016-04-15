@@ -1,107 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>DBSCAN EXAMPLE</title>
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="../jDBSCAN.js"></script>
-    
-    
-    <style>
-    .node {
-      stroke: #fff;
-      stroke-width: 1.5px;
-    }
+<head>
+	<meta charset="utf-8">
+	<title>DBSCAN EXAMPLE</title>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../jDBSCAN.js"></script>
 
-    .link {
-      stroke: #999;
-      stroke-opacity: .6;
-    }
-    </style>
+
+	<style>
+		.node {
+			stroke: #fff;
+			stroke-width: 1.5px;
+		}
+
+		.link {
+			stroke: #999;
+			stroke-opacity: .6;
+		}
+	</style>
 </head>
 
-  <body>
-    <div id="content_wrapper">
-    <input type="button" value="Reset" id='reset_btn' />  
-    <input type="button" value="Run DBSCAN" id='dbscan_btn' />
-    </div>
-  </body>
+<body>
+<div id="content_wrapper">
+	<input type="button" value="Reset" id='reset_btn'/>
+	<input type="button" value="Run DBSCAN" id='dbscan_btn'/>
+</div>
+</body>
 
-  <script>
+<script>
 
-  var width = 600;
-  var height = 600;
+	var width = 600;
+	var height = 600;
 
-  function rnd_snd() {
-  return (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1);
-  }
+	function rnd_snd() {
+		return (Math.random() * 2 - 1) + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
+	}
 
-  function rnd(mean, stdev) {
-    return Math.round(rnd_snd()*stdev+mean);
-  }
+	function rnd(mean, stdev) {
+		return Math.round(rnd_snd() * stdev + mean);
+	}
 
-  function generate_cluster_data(){
-    var num_clusters = 3;
-    var max_x_stdev = 10;
-    var max_y_stdev = 15;
-    var cluster_size = 30;
+	function generate_cluster_data() {
+		var num_clusters = 3;
+		var max_x_stdev = 10;
+		var max_y_stdev = 15;
+		var cluster_size = 30;
 
-    var raw_point_data = [];
-    var cluster_centers = [];
-    for(var i=0; i<num_clusters; i++){
-      cluster_centers.push({x: Math.random()*(width-30), y:Math.random()*(height-30)});
-    }
+		var raw_point_data = [];
+		var cluster_centers = [];
+		for (var i = 0; i < num_clusters; i++) {
+			cluster_centers.push({x: Math.random() * (width - 30), y: Math.random() * (height - 30)});
+		}
 
-    cluster_centers.forEach(function(d){
-      for(var i=0; i<cluster_size;i++)
-        raw_point_data.push({x: rnd(d.x, max_x_stdev), y:rnd(d.y, max_y_stdev)});
-    });
+		cluster_centers.forEach(function (d) {
+			for (var i = 0; i < cluster_size; i++) {
+				raw_point_data.push({x: rnd(d.x, max_x_stdev), y: rnd(d.y, max_y_stdev)});
+			}
+		});
 
-    return raw_point_data;
-   }
+		return raw_point_data;
+	}
 
-   function plot_points(points){
-    var node = svg.selectAll(".node")
-                  .data(points)
-                  .enter().append("circle")
-                  .attr("class", "node")
-                  .attr("r", 5)
-                  .style("fill", '#a30500')
-                  .attr('cx', function(d) { return d.x;})
-                  .attr('cy', function(d) { return d.y;});
-    }
+	function plot_points(points) {
+		var node = svg.selectAll(".node")
+				.data(points)
+				.enter().append("circle")
+				.attr("class", "node")
+				.attr("r", 5)
+				.style("fill", '#a30500')
+				.attr('cx', function (d) {
+					return d.x;
+				})
+				.attr('cy', function (d) {
+					return d.y;
+				});
+	}
 
-    var svg = d3.select("body").append("svg")
-                                .attr("width", width)
-                                .attr("height", height);
+	var svg = d3.select("body").append("svg")
+			.attr("width", width)
+			.attr("height", height);
 
-    var raw_point_data = generate_cluster_data();         
-    console.log('Raw point data input', raw_point_data);
-    plot_points(raw_point_data);
-
-
-    d3.select('#dbscan_btn').on('click', function(){
-        var dbscanner = jDBSCAN().eps(30).minPts(1).distance('EUCLIDEAN').data(raw_point_data);
-        var point_assignment_result = dbscanner();
-        console.log('Resulting DBSCAN output', point_assignment_result);
-
-        point_assignment_result.forEach(function(d,i){
-          raw_point_data[i].cluster = d;
-        });
-
-        var color = d3.scale.category20().domain(d3.range([0, d3.max(point_assignment_result)]));
-        d3.selectAll('.node')
-            .data(raw_point_data)
-            .style('fill', function(d){ return color(d.cluster);})
-    });
+	var raw_point_data = generate_cluster_data();
+	console.log('Raw point data input', raw_point_data);
+	plot_points(raw_point_data);
 
 
-    d3.select('#reset_btn').on('click', function(){
-       svg.selectAll('.node').remove();
-       var raw_point_data = generate_cluster_data();
-       console.log('Raw point data input', raw_point_data);
-       plot_points(raw_point_data);     
-    });
+	d3.select('#dbscan_btn').on('click', function () {
+		var dbscanner = jDBSCAN().eps(30).minPts(1).distance('EUCLIDEAN').data(raw_point_data);
+		var point_assignment_result = dbscanner();
+		console.log('Resulting DBSCAN output', point_assignment_result);
 
-  </script>
+		point_assignment_result.forEach(function (d, i) {
+			raw_point_data[i].cluster = d;
+		});
+
+		var color = d3.scale.category20().domain(d3.range([0, d3.max(point_assignment_result)]));
+		d3.selectAll('.node')
+				.data(raw_point_data)
+				.style('fill', function (d) {
+					return color(d.cluster);
+				})
+	});
+
+
+	d3.select('#reset_btn').on('click', function () {
+		svg.selectAll('.node').remove();
+		var raw_point_data = generate_cluster_data();
+		console.log('Raw point data input', raw_point_data);
+		plot_points(raw_point_data);
+	});
+
+</script>
 </html>
