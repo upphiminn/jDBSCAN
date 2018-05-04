@@ -1,5 +1,4 @@
 # jDBSCAN 
-**Corneliu S.**
 
 ---
 ## Description                
@@ -11,17 +10,17 @@
 **[1]** http://en.wikipedia.org/wiki/DBSCAN
 
 
-##Additional Features
+## Additional Features
 
  The algorithm also works on data points given by ***GPS coordinates***. Moreover, the algorithm can be used on data with a time dimension also. This allows for ***spatio-temporal*** clustering.   
  
-##Usage
+## Usage
 1. Import the script.
 
 		<script type="text/javascript" src="jDBSCAN.js"></script>
 		
 2. Sample Data Format
-####Basic 2D Data
+#### Basic 2D Data
 ```javascript
 		var point_data = [
 					{ 	
@@ -38,7 +37,7 @@
 					}
 				];
 ```
-####GPS Data
+#### GPS Data
 ```javascript
 var gps_point_data = [ 
 			{ 
@@ -64,7 +63,7 @@ var gps_point_data = [
 		];
 ```
 Where accuracy is given in meters.
-####Spatial and Temporal Data   
+#### Spatial and Temporal Data   
 ```javascript
 		var time_gps_data = [ 
 					{ 
@@ -94,7 +93,7 @@ Where accuracy is given in meters.
 				];
 ```
 
-###OR
+### OR
  
 ```javascript
 		var time_point_data = [ 
@@ -148,8 +147,8 @@ The default **time distance function** is given by the absolute difference betwe
 ```
 The remaining steps are similar.
 
-##Example
+## Example
 See **example.html**, use the console to view the raw input data and raw output.
 ![](example/default.png)
-####After DBSCAN
+#### After DBSCAN
 ![](example/clusters.png)
