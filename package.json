@@ -1,0 +1,34 @@
+{
+	"name": "jdbscan",
+	"version": "1.0.0",
+	"description": "DBSCAN (density based clustering algorithm algorithm) for js",
+	"main": "dist/jDBScan.js",
+	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.8.4",
+		"@babel/preset-env": "^7.8.4"
+	},
+	"scripts": {
+		"build": "babel src -s -d dist",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/upphiminn/jDBSCAN.git"
+	},
+	"keywords": [
+		"dbscan",
+		"density based",
+		"clustering",
+		"algorithms",
+		"gps clustering",
+		"coordinates clustering",
+		"lat lon clustering"
+	],
+	"author": "Corneliu S.",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/upphiminn/jDBSCAN/issues"
+	},
+	"homepage": "https://github.com/upphiminn/jDBSCAN#readme"
+}
