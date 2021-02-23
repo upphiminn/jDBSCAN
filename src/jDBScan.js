@@ -4,7 +4,7 @@
  */
 
 const jDBSCAN = function() {
-	// Local instance vars.
+	// local instance vars.
 	let eps;
 	let time_eps;
 	let minPts;
@@ -14,8 +14,8 @@ const jDBSCAN = function() {
 	let graph = [];
 	let distance = euclidean_distance;
 	let time_distance = timestamp_distance;
-
-	// Utils
+	
+	// utils
 	function array_min(array, f) {
 		let i = -1;
 		let n = array.length;
@@ -50,7 +50,7 @@ const jDBSCAN = function() {
 		return a;
 	}
 
-	// Distance Functions
+	// distance functions
 	function timestamp_distance(point1, point2) {
 		return Math.abs(point2.timestamp - point1.timestamp);
 	}
@@ -64,17 +64,12 @@ const jDBSCAN = function() {
 	}
 
 	function haversine_distance(point1, point2) {
-		// default 4 sig figs reflects typical 0.3% accuracy of spherical model
-		if (typeof precision === 'undefined') {
-			let precision = 4;
-		}
-
 		const R = 6371;
+		const precision = 4; // default 4 sig figs reflects typical 0.3% accuracy of spherical model
 		const lat1 = (point1.location.latitude * Math.PI) / 180;
 		const lon1 = (point1.location.longitude * Math.PI) / 180;
 		const lat2 = (point2.location.latitude * Math.PI) / 180;
 		const lon2 = (point2.location.longitude * Math.PI) / 180;
-
 		const dLat = lat2 - lat1;
 		const dLon = lon2 - lon1;
 
@@ -84,11 +79,11 @@ const jDBSCAN = function() {
 
 		const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		const d = R * c;
-
-		return d.toPrecision(precision);
+		
+		return d.toPrecision(precision); 
 	}
 
-	// Core Algorithm Related
+	// core algorithm related
 	function get_region_neighbours(point_idx) {
 		const neighbours = [];
 		let d = data[point_idx];
@@ -156,7 +151,7 @@ const jDBSCAN = function() {
 		return status;
 	};
 
-	// Resulting Clusters Center Points
+	// resulting clusters center points
 	dbscan.getClusters = function() {
 		const num_clusters = clusters.length;
 		const clusters_centers = [];
@@ -208,7 +203,7 @@ const jDBSCAN = function() {
 		return clusters_centers;
 	};
 
-	// Getters and setters
+	// getters and setters
 	dbscan.data = function(d) {
 		if (arguments.length === 0) {
 			return data;
